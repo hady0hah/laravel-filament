@@ -41,13 +41,14 @@ class DocsResource extends Resource
 
     public static function table(Table $table): Table
     {
+        // TODO : fix the preview below in list view
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('file_path')
                     ->label('File Path'),
-                Tables\Columns\ImageColumn::make('image_preview')
-                    ->label('Preview'),
+//                Tables\Columns\ImageColumn::make('image_preview')
+//                    ->label('Preview'),
                 Tables\Columns\BooleanColumn::make('published')
                     ->label('Published')
                     ->trueIcon('heroicon-o-check')
