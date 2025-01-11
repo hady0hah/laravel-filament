@@ -9,6 +9,10 @@ class BaseModel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'published'
+    ];
+
     protected $attributes = [
         'published' => true, // Default value for the published field
     ];
