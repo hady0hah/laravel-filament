@@ -18,5 +18,6 @@ class ContactMessages extends BaseModel
         'email',
         'subject',
         'message',
+        'published',
     ];
 }
