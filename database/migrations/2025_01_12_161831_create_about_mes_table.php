@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('about_me', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('tags')->nullable();
+            $table->string('image_path');
+            $table->text('description');
+            $table->boolean('published')->default(true);
             $table->timestamps();
         });
     }
