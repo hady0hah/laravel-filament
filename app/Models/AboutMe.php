@@ -9,4 +9,12 @@ class AboutMe extends Model
 {
     use HasFactory;
     protected $table = 'about_me';
+
+    protected $fillable = [
+        'title',
+        'tags',
+        'image_path',
+        'description',
+        'published',
+    ];
 }
