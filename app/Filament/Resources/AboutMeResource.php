@@ -16,6 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class AboutMeResource extends Resource
 {
     protected static ?string $model = AboutMe::class;
+    protected static ?string $label = 'About Me';
+    protected static ?string $pluralLabel = 'About Me';
+    protected static ?string $slug = 'about-me';
+
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
