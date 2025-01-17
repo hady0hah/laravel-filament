@@ -27,7 +27,21 @@ class AboutMeResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('title')
+                    ->required(),
+
+                Forms\Components\TextInput::make('tags'),
+
+                Forms\Components\Textarea::make('description')
+                    ->required(),
+
+                Forms\Components\FileUpload::make('image_path')
+//                    ->image()
+                    ->required(),
+
+                Forms\Components\Toggle::make('published')
+                    ->label('Published')
+                    ->default(true),
             ]);
     }
 
@@ -35,10 +49,27 @@ class AboutMeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('tags'),
+                Tables\Columns\BooleanColumn::make('published')
+                    ->label('Published')
+                    ->trueIcon('heroicon-o-check')
+                    ->falseIcon('heroicon-o-x-mark'),
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Created At')
+                    ->date(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Updated At')
+                    ->date(),
             ])
             ->filters([
-                //
+
+                Tables\Filters\Filter::make('published')
+                    ->query(fn (Builder $query): Builder => $query->where('published', true)),
+                Tables\Filters\Filter::make('unpublished')
+                    ->query(fn (Builder $query): Builder => $query->where('published', false)),
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
