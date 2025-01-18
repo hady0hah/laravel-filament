@@ -55,6 +55,7 @@ class ProductsResource extends Resource
 
                 Tables\Columns\TextColumn::make('about'),
                 Tables\Columns\TextColumn::make('link'),
+
                 ToggleColumn::make('published')
                     ->label('Published')
                     ->onIcon('heroicon-o-check')
@@ -63,6 +64,7 @@ class ProductsResource extends Resource
                     ->offColor('danger')
                     ->sortable()
                     ->toggleable(),
+
                 ToggleColumn::make('show_in_homepage')
                     ->label('Show In Homepage')
                     ->onIcon('heroicon-o-check')
@@ -71,13 +73,20 @@ class ProductsResource extends Resource
                     ->offColor('danger')
                     ->sortable()
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('description'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
-                    ->date(),
+                    ->date()
+                    ->sortable()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Updated At')
-                    ->date(),
+                    ->date()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->toggleable(),
+
 
             ])
             ->filters([
