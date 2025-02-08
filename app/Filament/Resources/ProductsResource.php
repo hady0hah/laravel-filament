@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\MultiSelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -59,8 +60,10 @@ class ProductsResource extends Resource
         return $table
             ->columns([
 
-                Tables\Columns\TextColumn::make('about'),
-                Tables\Columns\TextColumn::make('link'),
+                Tables\Columns\TextColumn::make('about')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('link')
+                    ->searchable(),
 
                 ToggleColumn::make('published')
                     ->label('Published')
@@ -100,7 +103,8 @@ class ProductsResource extends Resource
                     ->sortable()
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('description')
-                    ->toggleable(),
+                    ->toggleable()
+                    ->searchable(),
 
 
             ])
@@ -115,6 +119,11 @@ class ProductsResource extends Resource
                     ->query(fn (Builder $query): Builder => $query->where('published', true)),
                 Tables\Filters\Filter::make('unpublished')
                     ->query(fn (Builder $query): Builder => $query->where('published', false)),
+
+                MultiSelectFilter::make('technologies')
+                    ->relationship('technologies', 'name')
+                    ->searchable()
+                    ->preload(),
 
             ])
             ->actions([
