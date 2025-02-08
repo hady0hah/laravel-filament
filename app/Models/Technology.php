@@ -16,4 +16,12 @@ class Technology extends BaseModel
         'image_path',
         'published',
     ];
+
+
+    public function products()
+    {
+        return $this->belongsToMany(Products::class, 'product_technology', 'technology_id', 'product_id')->withTimestamps();
+    }
+
+
 }

@@ -19,4 +19,12 @@ class Products extends BaseModel
         'show_in_homepage',
         'published',
     ];
+
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class, 'product_technology', 'product_id', 'technology_id')->withTimestamps();
+    }
+
+
+
 }

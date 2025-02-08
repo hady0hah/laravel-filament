@@ -6,6 +6,7 @@ use App\Filament\Resources\ProductsResource\Pages;
 use App\Filament\Resources\ProductsResource\RelationManagers;
 use App\Models\Products;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -37,6 +38,11 @@ class ProductsResource extends Resource
 //                    ->image()
                     ->required(),
 
+                Select::make('technologies')
+                    ->relationship('technologies', 'name')
+                    ->multiple()
+                    ->preload(),
+
                 Forms\Components\Toggle::make('show_in_homepage')
                     ->label('Show In Homepage')
                     ->default(false),
@@ -65,6 +71,8 @@ class ProductsResource extends Resource
                     ->sortable()
                     ->toggleable(),
 
+
+
                 ToggleColumn::make('show_in_homepage')
                     ->label('Show In Homepage')
                     ->onIcon('heroicon-o-check')
@@ -72,6 +80,13 @@ class ProductsResource extends Resource
                     ->onColor('success')
                     ->offColor('danger')
                     ->sortable()
+                    ->toggleable(),
+
+                Tables\Columns\TextColumn::make('technologies.name')
+                    ->label('Technologies')
+                    ->sortable()
+                    ->searchable()
+                    ->badge()
                     ->toggleable(),
 
                 Tables\Columns\TextColumn::make('created_at')
