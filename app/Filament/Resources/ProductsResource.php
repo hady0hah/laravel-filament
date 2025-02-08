@@ -87,7 +87,6 @@ class ProductsResource extends Resource
 
                 Tables\Columns\TextColumn::make('technologies.name')
                     ->label('Technologies')
-                    ->sortable()
                     ->searchable()
                     ->badge()
                     ->toggleable(),
