@@ -24,9 +24,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->sidebarCollapsibleOnDesktop()
-            ->brandName('TechEcho')
-            ->brandLogo(fn() => asset('images/admin-logo.png'))
-            ->brandLogoHeight('40px')
+            ->brandLogo(fn () => view('admin.logo_name'))
             ->default()
             ->id('admin')
             ->path('admin')
