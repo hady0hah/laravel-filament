@@ -17,7 +17,7 @@ class SocialNetworkResource extends Resource
 {
     protected static ?string $model = SocialNetwork::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-bell-alert';
 
     public static function form(Form $form): Form
     {

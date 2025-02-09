@@ -21,7 +21,7 @@ class AboutMeResource extends Resource
     protected static ?string $slug = 'about-me';
 
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-identification';
 
     public static function form(Form $form): Form
     {
