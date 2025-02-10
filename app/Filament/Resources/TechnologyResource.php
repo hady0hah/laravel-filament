@@ -71,6 +71,19 @@ class TechnologyResource extends Resource
             ])
             ->filters([
 
+
+                Tables\Filters\Filter::make('name')
+                    ->form([
+                        Forms\Components\TextInput::make('name')
+                            ->placeholder('Search by Name')
+                            ->label('Name'),
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        if (!empty($data['name'])) {
+                            $query->where('name', 'like', '%' . $data['name'] . '%');
+                        }
+                    }),
+
                 Filter::make('created_at')
                     ->label('Created Date')
                     ->form([
