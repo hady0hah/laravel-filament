@@ -28,8 +28,8 @@ class ProductsResource extends Resource
         return $form
             ->schema([
 
+                Forms\Components\TextInput::make('name'),
                 Forms\Components\TextInput::make('about'),
-
                 Forms\Components\TextInput::make('link'),
 
                 Forms\Components\Textarea::make('description')
@@ -60,6 +60,10 @@ class ProductsResource extends Resource
         return $table
             ->columns([
 
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('about')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('link')
@@ -108,6 +112,18 @@ class ProductsResource extends Resource
 
             ])
             ->filters([
+
+                Tables\Filters\Filter::make('name')
+                    ->form([
+                        Forms\Components\TextInput::make('name')
+                            ->placeholder('Search by Name')
+                            ->label('Name'),
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        if (!empty($data['name'])) {
+                            $query->where('name', 'like', '%' . $data['name'] . '%');
+                        }
+                    }),
 
                 Tables\Filters\Filter::make('published_in_homepage')
                     ->query(fn (Builder $query): Builder => $query->where('show_in_homepage', true)),

@@ -12,6 +12,7 @@ class Products extends BaseModel
     protected $table = 'products';
 
     protected $fillable = [
+        'name',
         'about',
         'description',
         'link',
