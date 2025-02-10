@@ -23,6 +23,11 @@ class Products extends BaseModel
 
     public function technologies()
     {
+//        $allProducts = Products::withoutGlobalScope('published')->get(); without global scope without published
+//        $allProducts = Product::withoutGlobalScopes()->get(); without all global scope queries
+//        $allProducts = Products::get(); with global scope with published
+
+
         return $this->belongsToMany(Technology::class, 'product_technology', 'product_id', 'technology_id')->withTimestamps();
     }
 
